@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <!-- SITE TITTLE -->
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>房屋分析</title>
+  
+  <!-- FAVICON -->
+  <!-- PLUGINS CSS STYLE -->
+  <!-- <link href="plugins/jquery-ui/jquery-ui.min.css" rel="stylesheet"> -->
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='plugins/bootstrap/css/bootstrap.min.css') }}"/>
+  <link rel="stylesheet" href="{{ url_for('static', filename='plugins/bootstrap/css/bootstrap-slider.css') }}">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='plugins/font-awesome/css/font-awesome.min.css') }}">
+  <!-- Owl Carousel -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='plugins/slick-carousel/slick/slick.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='plugins/slick-carousel/slick/slick-theme.css') }}">
+  <!-- Fancy Box -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='plugins/fancybox/jquery.fancybox.pack.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='plugins/jquery-nice-select/css/nice-select.css') }}">
+  <!-- CUSTOM CSS -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body class="body-wrapper">
+
+<!--===============================
+=            heading          =
+================================-->
+
+<section class="hero-area bg-3 text-center overly">
+	<!-- Container Start -->
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<!-- Header Contetnt -->
+				<div class="content-block">
+					<h1>房屋CP值多少</h1>
+					<br><p>根據OCR爬蟲列出低於房屋實價交易統計數據估測值的筆項<br>再將分類為兩種優先程度</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Container End -->
+</section>
+<!--===========================================
+=            table            =
+============================================-->
+<section class="popular-deals section bg-gray">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-10 offset-md-1 col-lg-6 offset-lg-0">
+			  <!-- Recently Favorited -->
+			  <div class="widget dashboard-container my-adslist">
+				<h3 class="widget-header">不可錯過</h3>
+				<table class="table table-responsive product-dashboard-table">
+				  <thead>
+					<tr>
+					  <th class="text-center">區域</th>
+					  <th class="text-center">屋齡</th>
+					  <th class="text-center">坪數</th>
+					  <th class="text-center">房/廳/衛</th>
+					  <th class="text-center">價格(萬)</th>
+					  <th class="text-center">車位</th>
+					  <th class="text-center">連結</th>
+					</tr>
+				  </thead>
+				  <tbody id="prior1">
+				  </tbody>
+				</table>
+				</div>
+			</div>
+			<div class="col-md-10 offset-md-1 col-lg-6 offset-lg-0">
+				<!-- Recently Favorited -->
+				<div class="widget dashboard-container my-adslist">
+				  <h3 class="widget-header">推薦好房</h3>
+				  <table class="table table-responsive product-dashboard-table">
+					<thead>
+					  <tr>
+						<th class="text-center">區域</th>
+						<th class="text-center">屋齡</th>
+						<th class="text-center">坪數</th>
+						<th class="text-center">房/廳/衛</th>
+						<th class="text-center">價格(萬)</th>
+						<th class="text-center">車位</th>
+						<th class="text-center">連結</th>
+					  </tr>
+					</thead>
+					<tbody id="prior2">
+					</tbody>
+				</table>
+				</div>
+		  </div>
+		</div>
+	</div>
+</section>
+  <!-- Container End -->
+</footer>
+</body>
+
+<!-- JAVASCRIPTS -->
+<script src="{{ url_for('static', filename='js/jquery-3.6.0.js') }}"></script>
+<script>
+$(function(){
+	var dataset = []
+	var file1 = "../static/data/"+"{{data1}}"+".json"
+	$.ajax({
+	url: file1,
+	type: "GET",
+	dataType: "json",
+	success: function(data) {
+		for(var i = 0; i < data.length; i++){
+			dataset.push(data[i])
+		}
+		console.log("success");
+		var tbody =document.querySelector('#prior1')
+		for(var j = 0 ; j < dataset.length ; j++){
+			var tr = document.createElement('tr');
+			tbody.appendChild(tr);
+			for (var k = 0 ; k < 7 ; k++){
+				console.log(k)
+				var td = document.createElement("td");
+				td.style.width = "15%";
+				td.style.textAlign = "center";
+				switch(k)
+				{
+					case 0:td.innerHTML = dataset[j].location;
+					break;
+					case 1:td.innerHTML = dataset[j].age;
+					break;
+					case 2:td.innerHTML = dataset[j].size;
+					break;
+					case 3:td.innerHTML = dataset[j].format;
+					break;
+					case 4:td.innerHTML = dataset[j].price;
+					break;
+					case 5:td.innerHTML = dataset[j].car;
+					break;
+					case 6:
+						var p = j + 1;
+						var connect = "../static/screenshot/"+"{{data1}}"+"-"+p+".jpg";
+						var a = document.createElement("a");
+						a.setAttribute('href',connect);
+						a.innerHTML = "點我";
+						td.appendChild(a)
+						break;
+				}
+				tr.appendChild(td);
+			}
+		}
+	},
+		error: function() {
+		console.log("not found");
+		}
+	});
+});
+$(function(){
+	var dataset = []
+	var file2 = "../static/data/"+"{{data2}}"+".json"
+	$.ajax({
+	url: file2,
+	type: "GET",
+	dataType: "json",
+	success: function(data) {
+		for(var l = 0; l < data.length; l++){
+			dataset.push(data[l])
+		}
+		console.log("success");
+		var tbody =document.querySelector('#prior2')
+		for(var m = 0 ; m < dataset.length ; m++){
+			var tr = document.createElement('tr');
+			tbody.appendChild(tr);
+			for (var n = 0 ; n < 7 ; n++){
+				var td = document.createElement("td");
+				td.style.width = "15%";
+				td.style.textAlign = "center";
+				switch(n)
+				{
+					case 0:td.innerHTML = dataset[m].location;
+					break;
+					case 1:td.innerHTML = dataset[m].age;
+					break;
+					case 2:td.innerHTML = dataset[m].size;
+					break;
+					case 3:td.innerHTML = dataset[m].format;
+					break;
+					case 4:td.innerHTML = dataset[m].price;
+					break;
+					case 5:td.innerHTML = dataset[m].car;
+					break;
+					case 6:
+						var p = m + 1;
+						var connect = "../static/screenshot/"+"{{data2}}"+"-"+p+".jpg";
+						var a = document.createElement("a");
+						a.setAttribute('href',connect);
+						a.innerHTML = "點我";
+						td.appendChild(a)
+						break;
+				}
+				tr.appendChild(td);
+			}
+		}
+	},
+		error: function() {
+		console.log("not found");
+		}
+	});
+});
+</script>
+
+</html>
+
+
+

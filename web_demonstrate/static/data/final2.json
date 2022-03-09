@@ -1,0 +1,38 @@
+[
+    {
+        "format": "3/1/2",
+        "age": "35",
+        "size": "58.74",
+        "price": "1530",
+        "location": "北屯區",
+        "car": "有"
+    },{
+        "format": "2/1/2",
+        "age": "16",
+        "size": "35.6",
+        "price": "940",
+        "location": "南屯區",
+        "car": "有"
+    },{
+        "format": "3/2/2",
+        "age": "35",
+        "size": "54",
+        "price": "1400",
+        "location": "潭子區",
+        "car": "有"
+    },{
+        "format": "4/2/3",
+        "age": "26",
+        "size": "78.32",
+        "price": "1750",
+        "location": "北屯區",
+        "car": "有"
+    },{
+        "format": "2/1/2",
+        "age": "10",
+        "size": "45.6",
+        "price": "960",
+        "location": "北區",
+        "car": "無"
+    }
+]
