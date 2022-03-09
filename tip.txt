@@ -1,0 +1,8 @@
+OCR模型：
+使用步驟可參考以下網址
+https://my-fish-it.blogspot.com/2017/05/ss-tesseract-ocr-jtessboxeditor.html?m=1
+
+閱讀理解模型：
+可參考以下網站
+https://github.com/DRCKnowledgeTeam/DRCD
+https://colab.research.google.com/drive/195_uEj4U6xhL2FDeTmviimnoAPElm2oz?usp=sharing
