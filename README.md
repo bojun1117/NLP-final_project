@@ -8,8 +8,31 @@
 
 3.找出有價值之房屋並呈現於網站
 
-使用技術：Bert, OpenCV, Scikit learn, flask, OCR
-
 ###　相關技術
 
-＊　
+＊ Bert
+```
+!pip install transformers
+from transformers import BertTokenizer, BertConfig, BertForQuestionAnswering
+```
+資料編碼、呼叫預訓練模型、訓練模型
+* OpenCV
+```
+pip install opencv-python
+```
+圖片預處裡(灰階、二值化)
+* Scikit learn
+```
+pip install -U scikit-learn
+```
+房價預測
+* Flask
+```
+pip install Flask
+```
+網站製作
+* OCR
+```
+pip install pytesseract
+```
+將文章圖片轉為文字檔
