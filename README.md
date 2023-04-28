@@ -12,7 +12,7 @@
 
 ### 相關技術
 
-＊ Bert
+* Bert
 ```
 pip install transformers
 from transformers import BertTokenizer, BertConfig, BertForQuestionAnswering
