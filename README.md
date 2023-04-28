@@ -14,7 +14,7 @@
 
 ＊ Bert
 ```
-!pip install transformers
+pip install transformers
 from transformers import BertTokenizer, BertConfig, BertForQuestionAnswering
 ```
 資料編碼、呼叫預訓練模型、訓練模型
